@@ -29,8 +29,8 @@ public class RestExecutorService {
      */
     @Retryable(
             value = {HttpClientErrorException.TooManyRequests.class},
-            maxAttempts = 5,
-            backoff = @Backoff(delay = 1000L, multiplier = 1.5D, maxDelay = 5000L))
+            maxAttempts = 10,
+            backoff = @Backoff(delay = 2000L, multiplier = 1.5D, maxDelay = 20000L))
     @Timed
     public <T> ResponseEntity<T> execute(String url, HttpEntity<?> httpEntity, HttpMethod httpMethod, Class<T> responseClass) {
         try {
